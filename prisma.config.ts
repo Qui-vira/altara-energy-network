@@ -4,6 +4,9 @@ const databaseUrl = process.env.DATABASE_URL ?? "postgresql://postgres:postgres@
 
 export default defineConfig({
   schema: "prisma/schema.prisma",
-  migrations: { path: "prisma/migrations" },
+  migrations: {
+    path: "prisma/migrations",
+    seed: "node prisma/seed.mjs",
+  },
   datasource: { url: databaseUrl },
 });
