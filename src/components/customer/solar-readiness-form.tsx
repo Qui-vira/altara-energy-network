@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { leadSubmissionSchema, type LeadSubmissionInput } from "@/lib/validators/lead";
+import { leadSubmissionSchema, type LeadSubmissionFormInput, type LeadSubmissionInput } from "@/lib/validators/lead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -19,7 +19,7 @@ export function SolarReadinessForm() {
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const form = useForm<LeadSubmissionInput>({
+  const form = useForm<LeadSubmissionFormInput, unknown, LeadSubmissionInput>({
     resolver: zodResolver(leadSubmissionSchema),
     defaultValues: {
       name: "",

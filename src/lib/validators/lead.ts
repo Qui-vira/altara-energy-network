@@ -26,4 +26,5 @@ export const leadSubmissionSchema = z.object({
 });
 
 export type LeadSubmissionInput = z.infer<typeof leadSubmissionSchema>;
+export type LeadSubmissionFormInput = z.input<typeof leadSubmissionSchema>;
 export type ApplianceInput = z.infer<typeof applianceInputSchema>;

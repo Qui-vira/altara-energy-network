@@ -1,6 +1,8 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { BudgetLevel, DifficultyRating, EquipmentCategory, LeadStatus, PaymentStructure, StockStatus } from "@prisma/client";
+import { DifficultyRating, LeadStatus, PaymentStructure } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { leadStatusLabels } from "@/lib/constants";
 import { approveQuote, addLeadNote, createMaintenanceRecord, createProFormaInvoice, createQuote, createWorkOrder, recalculateLoadAudit, saveInstallerVerification, savePhotoReview, saveSiteInspection, updateLeadStatus } from "@/app/admin/actions";
@@ -17,7 +19,7 @@ import { formatCurrency, formatDate } from "@/lib/utils";
 
 export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const [lead, equipment, vendors, installers, vendorPrices] = await Promise.all([
+  const [lead, equipment, installers, vendorPrices] = await Promise.all([
     prisma.lead.findUnique({
       where: { id },
       include: {
@@ -35,7 +37,6 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
       },
     }),
     prisma.equipmentItem.findMany({ orderBy: [{ category: "asc" }, { budgetLevel: "asc" }] }),
-    prisma.vendor.findMany({ where: { active: true }, orderBy: { name: "asc" } }),
     prisma.user.findMany({ where: { role: "INSTALLER", active: true }, orderBy: { name: "asc" } }),
     prisma.vendorPrice.findMany({ orderBy: { updatedAt: "desc" }, take: 50 }),
   ]);

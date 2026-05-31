@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { Badge } from "@/components/ui/badge";

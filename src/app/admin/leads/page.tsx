@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { LeadStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";

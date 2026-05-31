@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { BudgetLevel, EquipmentCategory, StockStatus } from "@prisma/client";
 import { createEquipment, updateEquipmentScores } from "@/app/admin/actions";
 import { Badge } from "@/components/ui/badge";

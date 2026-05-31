@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { ConfidenceLevel, EquipmentCategory, ResearchNoteType, SourceType, StockStatus } from "@prisma/client";
 import { createResearchNote, createSource, createVendorPrice } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";

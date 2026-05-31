@@ -1,6 +1,4 @@
 import { SystemCategory } from "@prisma/client";
-import type { ApplianceInput } from "@/lib/validators/lead";
-
 export type WarningFlag =
   | "budget_too_low"
   | "load_too_high"
@@ -10,8 +8,17 @@ export type WarningFlag =
   | "wiring_risk"
   | "installer_verification_required";
 
+export type CalculatorApplianceInput = {
+  name: string;
+  quantity: number;
+  wattage: number;
+  hoursPerDay: number;
+  category?: string | null;
+  notes?: string | null;
+};
+
 export type LoadAuditInputs = {
-  appliances: ApplianceInput[];
+  appliances: CalculatorApplianceInput[];
   backupHoursNeeded: number;
   budgetRange?: string;
   photoUrls?: Record<string, string[]> | null;

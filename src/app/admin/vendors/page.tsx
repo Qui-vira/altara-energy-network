@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { createVendor } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
