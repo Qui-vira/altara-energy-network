@@ -1,7 +1,11 @@
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient();
+const databaseUrl = process.env.DATABASE_URL ?? "postgresql://postgres:postgres@localhost:5432/altara_energy_network?schema=public";
+const adapter = new PrismaPg({ connectionString: databaseUrl });
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   const adminHash = await bcrypt.hash("AltaraAdmin2026!", 12);
